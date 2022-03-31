@@ -18,6 +18,23 @@ delete() {
 
 }
 
+getDisplayNumber () {
+    const stringNumber = number.toString()
+    const integerDigits = parseFloat(stringNumber.split('.')[0])
+    const decimalDigits = parseFloat(stringNumber.split('.')[1])
+    let integerDisplay
+
+    if (isNaN(integerDigits)) {
+        integerDisplay = ''
+    }else {
+        integerDisplay = integerDigits.toLocaleString('en', {maximumFractionDigits: 0 })
+    }
+    if(decimalDigits != null ) {
+        return `${integerDisplay}.${decimalDigits}`
+    }else {
+        return integerDisplay
+    }
+}
 appendNumber(number) {
     if (number === "." && this.currentOperand.includes('.')) return
     this.currentOperand = this.currentOperand.toString() + number.toString()
